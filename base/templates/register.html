@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+    .form-group{
+    margin-left: auto;
+    margin-right: auto;
+    width: 35em;
+    }
+    .text-muted{
+        text-align: center;
+    }
+    .button{
+        background-color: #1042bf;
+        color:white;
+        display:block;
+        margin: 0 auto;
+        width: 90px;
+        height: 40px;
+    }
+</style>
+<br>
+<br>
+<br>
+<br>
+  <div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join today!</legend>
+            {{ form|crispy  }}
+        </fieldset>
+        <br>
+       
+        <div>
+            <button class="button" type="submit">Sign up</button>
+        </div>                             
+    </form>
+    <div class="border-top pt-3">
+        <div class="text-muted">
+            Already have an account? <a class="ml-2" href="#">Sign in</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

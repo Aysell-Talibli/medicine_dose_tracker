@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<h1>Wellcome {{user.username}} </h1>
+
+<head>{% if not medicines.all %}
+  <a href="{% url 'add_receipt' %}"><button type="button" class="btn btn-primary">
+    Make a receipt </button> </a> 
+  {% else %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+</head>
+<body>
+<div class="container">
+  
+  <br>
+  <br>
+  <br>
+  <h3>This table shows medicines in your receipt. </h3> 
+  <br>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Medicine name</th>
+        <th>Dosage</th>
+        <th>Frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for medicine in medicines %}
+      <tr>
+        
+        
+        <td>{{medicine.name}}</td>
+        <td>{{medicine.dosage}}</td>
+        <td>{{medicine.frequency}}</td>
+        
+        <td>
+          <a href="{% url 'update' medicine.pk %}"><button type="button" class="btn btn-primary">Edit</button></a>
+          <a href="{% url 'delete' medicine.pk %}"><button type="button" class="btn btn-danger">Delete</button></a> 
+      </tr>
+      
+       {% endfor %}
+       {% endif %}
+      <tr>
+     
+    </tbody>
+  </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+ 
+{% endblock content %}
